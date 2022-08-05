@@ -42,10 +42,7 @@ namespace InterviewSchedulerAPI.Controllers
 
         public User LoginUser(User a)
         {
-            EnableCorsAttribute cors = new EnableCorsAttribute("*","*","*");
-          
-
-            //config.EnableCors(cors);
+            
             return db.LoginUser(a);
         }
 
@@ -71,41 +68,29 @@ namespace InterviewSchedulerAPI.Controllers
             return db.GetUserById(id);
         }
 
+        //[HttpGet("Username/{Username}")]
+        //public IActionResult GetUsername(string Username)
+        //{
 
-        [HttpGet("GetAllRoles")]
-        public List<Role> GetAllRoles()
-        {
-            return db.GetAllRoles();
-        }
+        //    if (!ModelState.IsValid)
+        //    {
+        //        return BadRequest(ModelState);
+        //    }
 
-        [HttpPost("AddRole")]
-        public int AddRole(Role a)
-        {
-
-            return db.AddRole(a);
-        }
-
-        [HttpPut("UpdateRole")]
-        public int UpdateRole(int id, Role c)
-        {
-            return db.UpdateRole(id, c);
-        }
+        //    var user = db.GetUserByUserName(Username);
 
 
-        [HttpDelete("DeleteRole")]
-        public int DeleteRole(int id)
-        {
-            return db.DeleteRole(id);
-        }
+        //    if (user == null)
+        //    {
+        //        return NotFound();
+        //    }
 
 
-        [HttpGet("{id}/GetRoleById")]
+        //    return Ok(user);
+        //}
 
 
 
-        public Role GetRoleById(int id)
-        {
-            return db.GetRoleById(id);
-        }
+
     }
 }

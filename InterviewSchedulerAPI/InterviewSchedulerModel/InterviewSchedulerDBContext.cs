@@ -17,7 +17,6 @@ namespace InterviewSchedulerAPI.InterviewSchedulerModel
         {
         }
 
-        public virtual DbSet<Role> Roles { get; set; }
         public virtual DbSet<User> Users { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -32,18 +31,6 @@ namespace InterviewSchedulerAPI.InterviewSchedulerModel
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.HasAnnotation("Relational:Collation", "SQL_Latin1_General_CP1_CI_AS");
-
-            modelBuilder.Entity<Role>(entity =>
-            {
-                entity.ToTable("Role");
-
-                entity.Property(e => e.Id).HasColumnName("ID");
-
-                entity.Property(e => e.Rolename)
-                    .IsRequired()
-                    .HasMaxLength(30)
-                    .IsUnicode(false);
-            });
 
             modelBuilder.Entity<User>(entity =>
             {

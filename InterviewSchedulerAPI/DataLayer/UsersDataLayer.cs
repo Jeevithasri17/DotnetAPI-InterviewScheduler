@@ -54,39 +54,13 @@ namespace InterviewSchedulerAPI.DataLayer
             return c;
         }
 
-        public List<Role> GetAllRoles()
-        {
-            return db.Roles.ToList();
-        }
+        //public User GetUserByUserName(string Username)
+        //{
+        //    User item = db.Users.FirstOrDefault(usr => usr.Username == Username);
 
-        public int AddRole(Role a)
-        {
-            db.Roles.Add(a);
-
-            return db.SaveChanges();
-        }
-
-        public int UpdateRole(int id, Role c)
-        {
-            using (var db = new InterviewSchedulerDBContext())
-            {
-                db.Entry(c).State = EntityState.Modified;
-                return db.SaveChanges();
-            }
-        }
-        public int DeleteRole(int id)
-        {
-            Role b = GetRoleById(id);
-            db.Roles.Remove(b);
-            return db.SaveChanges();
-        }
-
-
-        public Role GetRoleById(int id)
-        {
-            Role c = db.Roles.Find(id);
-            return c;
-        }
-
+        //    return item;
+        //}
+      
+       
     }
 }

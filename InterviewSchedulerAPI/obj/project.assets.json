@@ -7850,11 +7850,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\React\\InterviewSchedulerProject\\InterviewSchedulerAPI\\InterviewSchedulerAPI\\InterviewSchedulerAPI.csproj",
+      "projectUniqueName": "D:\\React\\InterviewSchedulerAPI\\InterviewSchedulerAPI\\InterviewSchedulerAPI.csproj",
       "projectName": "InterviewSchedulerAPI",
-      "projectPath": "D:\\React\\InterviewSchedulerProject\\InterviewSchedulerAPI\\InterviewSchedulerAPI\\InterviewSchedulerAPI.csproj",
+      "projectPath": "D:\\React\\InterviewSchedulerAPI\\InterviewSchedulerAPI\\InterviewSchedulerAPI.csproj",
       "packagesPath": "C:\\Users\\Administrator\\.nuget\\packages\\",
-      "outputPath": "D:\\React\\InterviewSchedulerProject\\InterviewSchedulerAPI\\InterviewSchedulerAPI\\obj\\",
+      "outputPath": "D:\\React\\InterviewSchedulerAPI\\InterviewSchedulerAPI\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
