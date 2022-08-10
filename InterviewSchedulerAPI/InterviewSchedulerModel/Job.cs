@@ -10,5 +10,6 @@ namespace InterviewSchedulerAPI.InterviewSchedulerModel
         public int Id { get; set; }
         public string JobId { get; set; }
         public string JobRole { get; set; }
+        public int? Available { get; set; }
     }
 }
