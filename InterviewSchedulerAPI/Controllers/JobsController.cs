@@ -82,5 +82,40 @@ namespace InterviewSchedulerAPI.Controllers
 
             return Ok(job);
         }
+        [HttpGet("GetAllInterviewLevels")]
+        public List<InterviewLevel> GetAllInterviewLevels()
+        {
+            return db.GetAllInterviewLevels();
+        }
+
+        [HttpPost("AddInterviewLevel")]
+        public int AddInterviewLevel(InterviewLevel a)
+        {
+
+            return db.AddInterviewLevel(a);
+        }
+
+        [HttpPut("UpdateInterviewLevel")]
+        public int UpdateInterviewLevel(int id, InterviewLevel c)
+        {
+            return db.UpdateInterviewLevel(id, c);
+        }
+
+
+        [HttpDelete("DeleteInterviewLevel")]
+        public int DeleteInterviewLevel(int id)
+        {
+            return db.DeleteInterviewLevel(id);
+        }
+
+
+        [HttpGet("GetInterviewLevelById/{id}")]
+
+
+
+        public InterviewLevel GetInterviewLevelById(int id)
+        {
+            return db.GetInterviewLevelById(id);
+        }
     }
 }

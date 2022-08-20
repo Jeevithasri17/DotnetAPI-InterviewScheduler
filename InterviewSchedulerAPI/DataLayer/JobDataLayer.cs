@@ -73,5 +73,39 @@ namespace InterviewSchedulerAPI.DataLayer
 
             return item;
         }
+
+        public List<InterviewLevel> GetAllInterviewLevels()
+        {
+            return db.InterviewLevels.ToList();
+        }
+
+        public int AddInterviewLevel(InterviewLevel a)
+        {
+            db.InterviewLevels.Add(a);
+
+            return db.SaveChanges();
+        }
+
+        public int UpdateInterviewLevel(int id, InterviewLevel c)
+        {
+            using (var db = new InterviewSchedulerDBContext())
+            {
+                db.Entry(c).State = EntityState.Modified;
+                return db.SaveChanges();
+            }
+        }
+        public int DeleteInterviewLevel(int id)
+        {
+            InterviewLevel b = GetInterviewLevelById(id);
+            db.InterviewLevels.Remove(b);
+            return db.SaveChanges();
+        }
+
+
+        public InterviewLevel GetInterviewLevelById(int id)
+        {
+            InterviewLevel c = db.InterviewLevels.Find(id);
+            return c;
+        }
     }
 }

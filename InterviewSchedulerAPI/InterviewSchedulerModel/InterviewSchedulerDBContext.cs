@@ -17,6 +17,7 @@ namespace InterviewSchedulerAPI.InterviewSchedulerModel
         {
         }
 
+        public virtual DbSet<InterviewLevel> InterviewLevels { get; set; }
         public virtual DbSet<Job> Jobs { get; set; }
         public virtual DbSet<User> Users { get; set; }
 
@@ -32,6 +33,22 @@ namespace InterviewSchedulerAPI.InterviewSchedulerModel
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.HasAnnotation("Relational:Collation", "SQL_Latin1_General_CP1_CI_AS");
+
+            modelBuilder.Entity<InterviewLevel>(entity =>
+            {
+                entity.ToTable("InterviewLevel");
+
+                entity.Property(e => e.Id).HasColumnName("ID");
+
+                entity.Property(e => e.Level)
+                    .IsRequired()
+                    .HasMaxLength(20)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.LevelDes)
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
+            });
 
             modelBuilder.Entity<Job>(entity =>
             {
