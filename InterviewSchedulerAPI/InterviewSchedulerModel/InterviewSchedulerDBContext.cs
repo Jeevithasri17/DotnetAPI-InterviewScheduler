@@ -57,10 +57,10 @@ namespace InterviewSchedulerAPI.InterviewSchedulerModel
                 entity.Property(e => e.Id).HasColumnName("ID");
 
                 entity.Property(e => e.JobId)
-                    .IsRequired()
-                    .HasMaxLength(10)
+                    .HasMaxLength(19)
                     .IsUnicode(false)
-                    .HasColumnName("JobID");
+                    .HasColumnName("JobID")
+                    .HasComputedColumnSql("('KA-'+CONVERT([varchar](16),[id]))", false);
 
                 entity.Property(e => e.JobRole)
                     .IsRequired()
