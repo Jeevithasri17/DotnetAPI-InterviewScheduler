@@ -17,6 +17,7 @@ namespace InterviewSchedulerAPI.InterviewSchedulerModel
         {
         }
 
+        public virtual DbSet<Candidate> Candidates { get; set; }
         public virtual DbSet<InterviewLevel> InterviewLevels { get; set; }
         public virtual DbSet<Job> Jobs { get; set; }
         public virtual DbSet<User> Users { get; set; }
@@ -33,6 +34,62 @@ namespace InterviewSchedulerAPI.InterviewSchedulerModel
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.HasAnnotation("Relational:Collation", "SQL_Latin1_General_CP1_CI_AS");
+
+            modelBuilder.Entity<Candidate>(entity =>
+            {
+                entity.ToTable("Candidate");
+
+                entity.Property(e => e.Id).HasColumnName("ID");
+
+                entity.Property(e => e.Address)
+                    .IsRequired()
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.Dob)
+                    .HasColumnType("date")
+                    .HasColumnName("DOB");
+
+                entity.Property(e => e.Email)
+                    .IsRequired()
+                    .HasMaxLength(30)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.JobId).HasColumnName("Job_Id");
+
+                entity.Property(e => e.LevelId).HasColumnName("Level_Id");
+
+                entity.Property(e => e.Mobileno)
+                    .IsRequired()
+                    .HasMaxLength(12)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.Name)
+                    .IsRequired()
+                    .HasMaxLength(30)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.Qualification)
+                    .IsRequired()
+                    .HasMaxLength(15)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.Resume)
+                    .HasMaxLength(20)
+                    .IsUnicode(false);
+
+                entity.HasOne(d => d.Job)
+                    .WithMany(p => p.Candidates)
+                    .HasForeignKey(d => d.JobId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("CJFK");
+
+                entity.HasOne(d => d.Level)
+                    .WithMany(p => p.Candidates)
+                    .HasForeignKey(d => d.LevelId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("CLFK");
+            });
 
             modelBuilder.Entity<InterviewLevel>(entity =>
             {
