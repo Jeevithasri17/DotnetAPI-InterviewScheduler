@@ -15,11 +15,11 @@ namespace InterviewSchedulerAPI.DataLayer
         {
 
 
-            //return db.Candidates.Include(t => t.Job)
-            //                .Include(t => t.Level)
-            //                .ToList();
+            return db.Candidates.Include(t => t.Job)
+                            .Include(t => t.Level)
+                            .ToList();
 
-            return db.Candidates.ToList();
+            //return db.Candidates.ToList();
 
         }
 

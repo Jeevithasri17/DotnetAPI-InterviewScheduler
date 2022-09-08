@@ -23,6 +23,13 @@ namespace InterviewSchedulerAPI.Controllers
             return db.GetAllCandidates();
         }
 
+        [HttpGet("GetJobroleandLevel")]
+
+        //public List<Candidate> GetJobroleandLevel()
+        //{
+        //    return db.GetJobroleandLevel();
+        //}
+
         [HttpPost("AddCandidate")]
 
         public int AddCandidate(Candidate a)
