@@ -20,6 +20,7 @@ namespace InterviewSchedulerAPI.InterviewSchedulerModel
         public virtual DbSet<Candidate> Candidates { get; set; }
         public virtual DbSet<InterviewLevel> InterviewLevels { get; set; }
         public virtual DbSet<Job> Jobs { get; set; }
+        public virtual DbSet<Panel> Panels { get; set; }
         public virtual DbSet<User> Users { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -123,6 +124,44 @@ namespace InterviewSchedulerAPI.InterviewSchedulerModel
                     .IsRequired()
                     .HasMaxLength(20)
                     .IsUnicode(false);
+            });
+
+            modelBuilder.Entity<Panel>(entity =>
+            {
+                entity.ToTable("Panel");
+
+                entity.Property(e => e.Id).HasColumnName("ID");
+
+                entity.Property(e => e.Email)
+                    .IsRequired()
+                    .HasMaxLength(30)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.JobId).HasColumnName("JobID");
+
+                entity.Property(e => e.LevelId).HasColumnName("LevelID");
+
+                entity.Property(e => e.Mobileno)
+                    .IsRequired()
+                    .HasMaxLength(12)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.Name)
+                    .IsRequired()
+                    .HasMaxLength(30)
+                    .IsUnicode(false);
+
+                entity.HasOne(d => d.Job)
+                    .WithMany(p => p.Panels)
+                    .HasForeignKey(d => d.JobId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("PJFK");
+
+                entity.HasOne(d => d.Level)
+                    .WithMany(p => p.Panels)
+                    .HasForeignKey(d => d.LevelId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("PLFK");
             });
 
             modelBuilder.Entity<User>(entity =>

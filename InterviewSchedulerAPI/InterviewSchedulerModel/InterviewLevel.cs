@@ -10,6 +10,7 @@ namespace InterviewSchedulerAPI.InterviewSchedulerModel
         public InterviewLevel()
         {
             Candidates = new HashSet<Candidate>();
+            Panels = new HashSet<Panel>();
         }
 
         public int Id { get; set; }
@@ -17,5 +18,6 @@ namespace InterviewSchedulerAPI.InterviewSchedulerModel
         public string LevelDes { get; set; }
 
         public virtual ICollection<Candidate> Candidates { get; set; }
+        public virtual ICollection<Panel> Panels { get; set; }
     }
 }
