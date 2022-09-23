@@ -39,7 +39,7 @@ namespace InterviewSchedulerAPI.Controllers
         }
 
 
-        [HttpPut("UpdateCandidate")]
+        [HttpPut("UpdateCandidate/{id}")]
 
         public int UpdateCandidate(int id, Candidate c)
         {
