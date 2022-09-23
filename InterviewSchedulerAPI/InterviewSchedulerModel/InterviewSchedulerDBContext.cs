@@ -48,7 +48,8 @@ namespace InterviewSchedulerAPI.InterviewSchedulerModel
                     .IsUnicode(false);
 
                 entity.Property(e => e.Dob)
-                    .HasColumnType("date")
+                    .HasMaxLength(20)
+                    .IsUnicode(false)
                     .HasColumnName("DOB");
 
                 entity.Property(e => e.Email)

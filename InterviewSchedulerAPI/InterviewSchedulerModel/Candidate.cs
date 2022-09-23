@@ -9,7 +9,7 @@ namespace InterviewSchedulerAPI.InterviewSchedulerModel
     {
         public int Id { get; set; }
         public string Name { get; set; }
-        public DateTime Dob { get; set; }
+        public string Dob { get; set; }
         public string Address { get; set; }
         public string Mobileno { get; set; }
         public string Qualification { get; set; }

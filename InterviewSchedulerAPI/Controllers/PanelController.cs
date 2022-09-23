@@ -31,7 +31,7 @@ namespace InterviewSchedulerAPI.Controllers
         }
 
 
-        [HttpPut("UpdatePanel")]
+        [HttpPut("UpdatePanel/{id}")]
 
         public int UpdatePanel(int id, Panel c)
         {
@@ -46,7 +46,7 @@ namespace InterviewSchedulerAPI.Controllers
             return db.DeletePanel(id);
         }
 
-        [HttpGet("GetPanelById")]
+        [HttpGet("GetPanelById/{id}")]
 
         public Panel GetPanelById(int id)
         {
