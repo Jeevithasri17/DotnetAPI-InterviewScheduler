@@ -7,8 +7,15 @@ namespace InterviewSchedulerAPI.InterviewSchedulerModel
 {
     public partial class Candidate
     {
+        public Candidate()
+        {
+            CandidateAvailabilities = new HashSet<CandidateAvailability>();
+        }
+
+
         public int Id { get; set; }
         public string Name { get; set; }
+
         public string Dob { get; set; }
         public string Address { get; set; }
         public string Mobileno { get; set; }
@@ -20,5 +27,6 @@ namespace InterviewSchedulerAPI.InterviewSchedulerModel
 
         public virtual Job Job { get; set; }
         public virtual InterviewLevel Level { get; set; }
+        public virtual ICollection<CandidateAvailability> CandidateAvailabilities { get; set; }
     }
 }

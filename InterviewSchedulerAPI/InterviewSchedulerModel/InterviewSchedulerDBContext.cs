@@ -18,6 +18,7 @@ namespace InterviewSchedulerAPI.InterviewSchedulerModel
         }
 
         public virtual DbSet<Candidate> Candidates { get; set; }
+        public virtual DbSet<CandidateAvailability> CandidateAvailabilities { get; set; }
         public virtual DbSet<InterviewLevel> InterviewLevels { get; set; }
         public virtual DbSet<Job> Jobs { get; set; }
         public virtual DbSet<Panel> Panels { get; set; }
@@ -67,7 +68,6 @@ namespace InterviewSchedulerAPI.InterviewSchedulerModel
                     .IsUnicode(false);
 
                 entity.Property(e => e.Name)
-                    .IsRequired()
                     .HasMaxLength(30)
                     .IsUnicode(false);
 
@@ -91,6 +91,26 @@ namespace InterviewSchedulerAPI.InterviewSchedulerModel
                     .HasForeignKey(d => d.LevelId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("CLFK");
+            });
+
+            modelBuilder.Entity<CandidateAvailability>(entity =>
+            {
+                entity.ToTable("CandidateAvailability");
+
+                entity.Property(e => e.Id).HasColumnName("ID");
+
+                entity.Property(e => e.AvailableDate)
+                    .IsRequired()
+                    .HasMaxLength(20)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.CandidateId).HasColumnName("CandidateID");
+
+                entity.HasOne(d => d.Candidate)
+                    .WithMany(p => p.CandidateAvailabilities)
+                    .HasForeignKey(d => d.CandidateId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("CFK");
             });
 
             modelBuilder.Entity<InterviewLevel>(entity =>

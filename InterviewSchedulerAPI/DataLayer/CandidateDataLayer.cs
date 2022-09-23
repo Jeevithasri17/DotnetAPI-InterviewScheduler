@@ -52,5 +52,43 @@ namespace InterviewSchedulerAPI.DataLayer
             Candidate c = db.Candidates.Find(id);
             return c;
         }
+
+        public List<CandidateAvailability> GetAllCandidateAvailabilities()
+        {
+            return db.CandidateAvailabilities.Include(t => t.Candidate)
+
+                                             .ToList();
+        }
+
+
+
+        public int AddCandidateAvailability(CandidateAvailability a)
+        {
+
+            db.CandidateAvailabilities.Add(a);
+            return db.SaveChanges();
+        }
+
+        public int UpdateCandidateAvailability(int id, CandidateAvailability c)
+        {
+            using (var db = new InterviewSchedulerDBContext())
+            {
+                db.Entry(c).State = EntityState.Modified;
+                return db.SaveChanges();
+            }
+        }
+        public int DeleteCandidateAvailability(int id)
+        {
+            CandidateAvailability b = GetCandidateAvailabilityById(id);
+            db.CandidateAvailabilities.Remove(b);
+            return db.SaveChanges();
+        }
+
+        public CandidateAvailability GetCandidateAvailabilityById(int id)
+        {
+            CandidateAvailability c = db.CandidateAvailabilities.Find(id);
+            return c;
+        }
+
     }
 }

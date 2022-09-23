@@ -61,5 +61,39 @@ namespace InterviewSchedulerAPI.Controllers
             return db.GetCandidateById(id);
         }
 
+
+        [HttpGet("GetAllCandidateAvailabilities")]
+        public List<CandidateAvailability> GetAllCandidateAvailabilities()
+        {
+            return db.GetAllCandidateAvailabilities();
+        }
+
+        [HttpPost("AddCandidateAvailability")]
+        public int AddCandidateAvailability(CandidateAvailability a)
+        {
+
+            return db.AddCandidateAvailability(a);
+        }
+
+        [HttpPut("UpdateCandidateAvailability/{id}")]
+        public int UpdateCandidateAvailability(int id, CandidateAvailability c)
+        {
+            return db.UpdateCandidateAvailability(id, c);
+        }
+
+        [HttpDelete("DeleteCandidateAvailability")]
+        public int DeleteCandidateAvailability(int id)
+        {
+            return db.DeleteCandidateAvailability(id);
+        }
+
+        [HttpGet("GetCandidateAvailabilityById/{id}")]
+        public CandidateAvailability GetCandidateAvailabilityById(int id)
+        {
+            return db.GetCandidateAvailabilityById(id);
+        }
+
+
+
     }
 }
