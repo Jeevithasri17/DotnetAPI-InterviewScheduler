@@ -66,7 +66,7 @@ namespace InterviewSchedulerAPI.Controllers
             return db.AddPanelAvailability(a);
         }
 
-        [HttpPut("UpdatePanelAvailability")]
+        [HttpPut("UpdatePanelAvailability/{id}")]
         public int UpdatePanelAvailability(int id, PanelAvailability c)
         {
             return db.UpdatePanelAvailability(id, c);
@@ -78,7 +78,7 @@ namespace InterviewSchedulerAPI.Controllers
             return db.DeletePanelAvailability(id);
         }
 
-        [HttpGet("GetPanelAvailabilityById")]
+        [HttpGet("GetPanelAvailabilityById/{id}")]
         public PanelAvailability GetPanelAvailabilityById(int id)
         {
             return db.GetPanelAvailabilityById(id);
