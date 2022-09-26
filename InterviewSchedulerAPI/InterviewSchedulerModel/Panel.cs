@@ -7,6 +7,11 @@ namespace InterviewSchedulerAPI.InterviewSchedulerModel
 {
     public partial class Panel
     {
+        public Panel()
+        {
+            PanelAvailabilities = new HashSet<PanelAvailability>();
+        }
+
         public int Id { get; set; }
         public string Name { get; set; }
         public string Email { get; set; }
@@ -16,5 +21,6 @@ namespace InterviewSchedulerAPI.InterviewSchedulerModel
 
         public virtual Job Job { get; set; }
         public virtual InterviewLevel Level { get; set; }
+        public virtual ICollection<PanelAvailability> PanelAvailabilities { get; set; }
     }
 }

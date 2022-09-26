@@ -12,10 +12,7 @@ namespace InterviewSchedulerAPI.InterviewSchedulerModel
             CandidateAvailabilities = new HashSet<CandidateAvailability>();
         }
 
-
         public int Id { get; set; }
-        public string Name { get; set; }
-
         public string Dob { get; set; }
         public string Address { get; set; }
         public string Mobileno { get; set; }
@@ -24,6 +21,7 @@ namespace InterviewSchedulerAPI.InterviewSchedulerModel
         public int LevelId { get; set; }
         public int JobId { get; set; }
         public string Resume { get; set; }
+        public string Name { get; set; }
 
         public virtual Job Job { get; set; }
         public virtual InterviewLevel Level { get; set; }

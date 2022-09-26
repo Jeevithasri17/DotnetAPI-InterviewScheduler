@@ -52,5 +52,36 @@ namespace InterviewSchedulerAPI.Controllers
         {
             return db.GetPanelById(id);
         }
+
+        [HttpGet("GetAllPanelAvailabilities")]
+        public List<PanelAvailability> GetAllPanelAvailabilities()
+        {
+            return db.GetAllPanelAvailabilities();
+        }
+
+        [HttpPost("AddPanelAvailability")]
+        public int AddPanelAvailability(PanelAvailability a)
+        {
+
+            return db.AddPanelAvailability(a);
+        }
+
+        [HttpPut("UpdatePanelAvailability")]
+        public int UpdatePanelAvailability(int id, PanelAvailability c)
+        {
+            return db.UpdatePanelAvailability(id, c);
+        }
+
+        [HttpDelete("DeletePanelAvailability")]
+        public int DeletePanelAvailability(int id)
+        {
+            return db.DeletePanelAvailability(id);
+        }
+
+        [HttpGet("GetPanelAvailabilityById")]
+        public PanelAvailability GetPanelAvailabilityById(int id)
+        {
+            return db.GetPanelAvailabilityById(id);
+        }
     }
 }

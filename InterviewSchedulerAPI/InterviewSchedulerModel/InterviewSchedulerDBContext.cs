@@ -22,6 +22,7 @@ namespace InterviewSchedulerAPI.InterviewSchedulerModel
         public virtual DbSet<InterviewLevel> InterviewLevels { get; set; }
         public virtual DbSet<Job> Jobs { get; set; }
         public virtual DbSet<Panel> Panels { get; set; }
+        public virtual DbSet<PanelAvailability> PanelAvailabilities { get; set; }
         public virtual DbSet<User> Users { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -183,6 +184,26 @@ namespace InterviewSchedulerAPI.InterviewSchedulerModel
                     .HasForeignKey(d => d.LevelId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("PLFK");
+            });
+
+            modelBuilder.Entity<PanelAvailability>(entity =>
+            {
+                entity.ToTable("PanelAvailability");
+
+                entity.Property(e => e.Id).HasColumnName("ID");
+
+                entity.Property(e => e.AvailableDate)
+                    .IsRequired()
+                    .HasMaxLength(20)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.PanelId).HasColumnName("PanelID");
+
+                entity.HasOne(d => d.Panel)
+                    .WithMany(p => p.PanelAvailabilities)
+                    .HasForeignKey(d => d.PanelId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("PFK");
             });
 
             modelBuilder.Entity<User>(entity =>
