@@ -10,6 +10,7 @@ namespace InterviewSchedulerAPI.InterviewSchedulerModel
         public Candidate()
         {
             CandidateAvailabilities = new HashSet<CandidateAvailability>();
+            Schedules = new HashSet<Schedule>();
         }
 
         public int Id { get; set; }
@@ -26,5 +27,6 @@ namespace InterviewSchedulerAPI.InterviewSchedulerModel
         public virtual Job Job { get; set; }
         public virtual InterviewLevel Level { get; set; }
         public virtual ICollection<CandidateAvailability> CandidateAvailabilities { get; set; }
+        public virtual ICollection<Schedule> Schedules { get; set; }
     }
 }

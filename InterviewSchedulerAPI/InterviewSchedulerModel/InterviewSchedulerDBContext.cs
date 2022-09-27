@@ -23,6 +23,7 @@ namespace InterviewSchedulerAPI.InterviewSchedulerModel
         public virtual DbSet<Job> Jobs { get; set; }
         public virtual DbSet<Panel> Panels { get; set; }
         public virtual DbSet<PanelAvailability> PanelAvailabilities { get; set; }
+        public virtual DbSet<Schedule> Schedules { get; set; }
         public virtual DbSet<User> Users { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -204,6 +205,50 @@ namespace InterviewSchedulerAPI.InterviewSchedulerModel
                     .HasForeignKey(d => d.PanelId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("PFK");
+            });
+
+            modelBuilder.Entity<Schedule>(entity =>
+            {
+                entity.ToTable("Schedule");
+
+                entity.Property(e => e.Id).HasColumnName("ID");
+
+                entity.Property(e => e.CandidateId).HasColumnName("Candidate_id");
+
+                entity.Property(e => e.Date)
+                    .IsRequired()
+                    .HasMaxLength(20)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.JobId).HasColumnName("JobID");
+
+                entity.Property(e => e.LevelId).HasColumnName("LevelID");
+
+                entity.Property(e => e.PanelId).HasColumnName("Panel_id");
+
+                entity.HasOne(d => d.Candidate)
+                    .WithMany(p => p.Schedules)
+                    .HasForeignKey(d => d.CandidateId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("CFK1");
+
+                entity.HasOne(d => d.Job)
+                    .WithMany(p => p.Schedules)
+                    .HasForeignKey(d => d.JobId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("SJFK");
+
+                entity.HasOne(d => d.Level)
+                    .WithMany(p => p.Schedules)
+                    .HasForeignKey(d => d.LevelId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("SLFK");
+
+                entity.HasOne(d => d.Panel)
+                    .WithMany(p => p.Schedules)
+                    .HasForeignKey(d => d.PanelId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("PFK1");
             });
 
             modelBuilder.Entity<User>(entity =>

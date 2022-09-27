@@ -11,6 +11,7 @@ namespace InterviewSchedulerAPI.InterviewSchedulerModel
         {
             Candidates = new HashSet<Candidate>();
             Panels = new HashSet<Panel>();
+            Schedules = new HashSet<Schedule>();
         }
 
         public int Id { get; set; }
@@ -20,5 +21,6 @@ namespace InterviewSchedulerAPI.InterviewSchedulerModel
 
         public virtual ICollection<Candidate> Candidates { get; set; }
         public virtual ICollection<Panel> Panels { get; set; }
+        public virtual ICollection<Schedule> Schedules { get; set; }
     }
 }
